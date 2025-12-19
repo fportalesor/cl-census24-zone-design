@@ -5,7 +5,8 @@ from polygon_processors import (
     MultipartPolygonRelabeller)
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description="Process Chilean Census polygons data.")
+    parser = argparse.ArgumentParser(description="Process Chilean Census polygons data.",
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('-u', '--urban', type=str, default="Cartografía_censo2024_R13_Manzanas.parquet",
                       help="Path to the input urban census polygons data file")
     parser.add_argument('-r', '--rural', type=str, default="Cartografía_censo2024_R13_Entidades.parquet",
@@ -44,5 +45,3 @@ if __name__ == '__main__':
     processed_data = multipart_processor._relabel_multipart_blocks()
 
     processed_data.to_parquet(str(output_dir / args.output))
-
-
