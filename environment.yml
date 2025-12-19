@@ -1,0 +1,33 @@
+name: cl-census24
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+
+  - numpy
+  - pandas
+  - pyarrow
+  - joblib
+  - tqdm
+
+  - matplotlib
+  - seaborn
+
+  - geopandas
+  - libpysal
+  - contextily
+  - shapely
+  - fiona
+  - rtree
+  - topojson
+
+  - openpyxl
+  - xlsxwriter
+
+  - jupyterlab
+  - ipykernel
+
+  - pip
+  - pip:
+    - voronoi-diagram-for-polygons
