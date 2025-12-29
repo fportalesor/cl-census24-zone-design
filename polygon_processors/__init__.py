@@ -6,6 +6,7 @@ from .densifier import PolygonDensifier
 from .hidden_polys import HiddenPolygonProcessor
 from .dissolve_processor import PolygonDissolver
 from .parallel_voronoi import ParallelVoronoiProcessor
+from .attribute_processor import AttributeCalculator
 
 __all__ = [
     'PolygonProcessor',
@@ -15,5 +16,6 @@ __all__ = [
     'PolygonDensifier',
     'HiddenPolygonProcessor',
     'PolygonDissolver',
-    'ParallelVoronoiProcessor'
+    'ParallelVoronoiProcessor',
+    'AttributeCalculator'
 ]

@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import geopandas as gpd
 from pathlib import Path
 from .base_processor import PolygonProcessor
@@ -55,9 +56,6 @@ class UrbanRuralPolygonMerger(PolygonProcessor):
 
         # Subtract rural areas from urban polygons, in case they intersect
         urban_blocks["geometry"] = urban_blocks.geometry.difference(rural_union)
-
-        urban_blocks, _ = self.identify_multipart_polygons(
-            urban_blocks, self.poly_id, keep_largest=True)
 
         return pd.concat([urban_blocks, rural_entities], axis=0)
     

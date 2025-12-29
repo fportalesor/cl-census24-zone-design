@@ -67,6 +67,18 @@ class PolygonDissolver(PolygonProcessor):
         tracts = tract_assignments.merge(aztool_ids, on="AZM_ID", how="left")
         tracts = tracts[[self.poly_id, tract_id]]
 
+        self.data[self.poly_id] = (
+            self.data[self.poly_id]
+            .astype(str)
+            .astype(int)
+        )
+
+        tracts[self.poly_id] = (
+            tracts[self.poly_id]
+            .astype(str)
+            .astype(int)
+        )
+
         tracts = self.data.merge(tracts, on=self.poly_id, how="left")
         
         tracts_dissolved = tracts.dissolve(
@@ -75,18 +87,18 @@ class PolygonDissolver(PolygonProcessor):
                 "commune_id": "first",
                 "commune": "first",
                 target_col: "sum",
-                #"sregion_id": "first",
-                #"pop_high": "sum",
-                #"pop_middle": "sum",
-                #"pop_low": "sum"
+                "sub_region": "first",
+                "pop_high": "sum",
+                "pop_middle": "sum",
+                "pop_low": "sum"
             }
         ).reset_index()
 
         tracts_dissolved = tracts_dissolved[
             ["commune_id", "commune", tract_id, 
-             #"sregion_id",
+             "sub_region",
              target_col, 
-             #"pop_high", "pop_middle", "pop_low",
+             "pop_high", "pop_middle", "pop_low",
              "geometry"]
         ]
 
